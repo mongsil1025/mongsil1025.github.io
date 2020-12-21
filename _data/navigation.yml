@@ -1,0 +1,43 @@
+# main links
+main:
+  # - title: "Quick-Start Guide"
+  #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  - title: "About"
+    url: "/about/"
+  - title: "TIL"
+    url: /til/
+  - title: "Algorithm"
+    url: /algorithm/
+  - title: "Book"
+    url: /book/
+
+book:
+  - title: "Book"
+    url: /book/
+    children:
+      - title: "MongoDB in Action"
+        url: /book/mongo/
+
+algorithm:
+  - title: "basic"
+    url: /algorithm/basic/
+  - title: "codility"
+    url: /algorithm/codility/
+  - title : "backjun"
+    url: /algorithm/backjun/
+  - title: "leetcode"
+    url: /algorithm/leetcode/
+
+til:
+  - title: "redis"
+    url: /til/redis/
+  - title: "vue"
+    url: /til/vue/
+  - title: "language"
+    url: /til/language/
+  - title: "git"
+    url: /til/git/
+
+language:
+  - title: "python"
+    url: /til/language/python
