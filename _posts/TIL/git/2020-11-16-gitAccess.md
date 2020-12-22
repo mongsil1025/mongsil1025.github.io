@@ -1,5 +1,4 @@
 ---
-layout: archive
 title:  "[GIT] Access denied"
 date: 2020-11-16
 excerpt: ""

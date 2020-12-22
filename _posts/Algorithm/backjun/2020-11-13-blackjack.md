@@ -1,5 +1,4 @@
 ---
-layout: archive
 title:  "[백준] 블랙잭"
 date: 2020-11-13
 excerpt: ""

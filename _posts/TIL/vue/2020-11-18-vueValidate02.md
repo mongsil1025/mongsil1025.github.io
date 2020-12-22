@@ -1,5 +1,4 @@
 ---
-layout: archive
 title:  "[Vue.js] v-validate.continues"
 date: 2020-11-18
 excerpt: ""

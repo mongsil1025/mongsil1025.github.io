@@ -1,5 +1,4 @@
 ---
-layout: single
 title:  "[Vue.js] v-validate Disable 된 항목에서 Validation 안됨"
 date: 2020-11-23
 tags: [til, vue]

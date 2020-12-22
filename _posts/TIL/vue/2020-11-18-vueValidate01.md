@@ -1,5 +1,4 @@
 ---
-layout: archive
 title:  "[Vue.js] v-validate 사용시 실시간으로 validate 안되는 현상"
 date: 2020-11-18
 excerpt: ""
