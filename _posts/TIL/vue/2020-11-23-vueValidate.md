@@ -1,10 +1,10 @@
 ---
-layout: archive
+layout: single
 title:  "[Vue.js] v-validate Disable 된 항목에서 Validation 안됨"
 date: 2020-11-23
-excerpt: ""
 tags: [til, vue]
 categories: [til/vue]
+breadcrumbs: true
 ---
 
 v-validate는 기본적으로 `disabled` 된 항목에서는 validation을 pass 합니다.
