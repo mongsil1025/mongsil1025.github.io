@@ -226,6 +226,7 @@ figure {
     border-radius: $border-radius;
     -webkit-transition: $global-transition;
     transition: $global-transition;
+    box-shadow: 3px 3px 10px grey;
   }
 
   > a {
