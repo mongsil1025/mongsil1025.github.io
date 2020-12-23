@@ -7,7 +7,7 @@ classes: wide
 ---
 
 <div style="text-align: center; margin: 50px">
-  <img src="/theme/img/profile.png" class="user-image" style="width: 200px; height:200px" alt="My Profile Photo">
+  <img src="/assets/img/profile.png" class="user-image" style="width: 200px; height:200px" alt="My Profile Photo">
 </div>
 
 <div id="skills">
