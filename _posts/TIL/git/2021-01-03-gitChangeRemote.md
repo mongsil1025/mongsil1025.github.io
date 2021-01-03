@@ -33,7 +33,6 @@ asis-user-name/repository -> tobe-user-name/repository
 ```
 
 따라서 로컬에서 작업하고 있던 git url을 변경해줘야 한다.
-[Changing a remote's URL](https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url)
 
 `git bash`를 열고 로컬에서 작업하고 있는 경로로 이동
 `git remote -v` 명령어 실행해서 현재 mounting 된 git URL 확인
@@ -45,6 +44,8 @@ asis-user-name/repository -> tobe-user-name/repository
 
 
 ![화면 캡처 2021-01-03 154428](https://i.imgur.com/h3suFIA.png)
+
+`git remote set-url` 에 대해서는 [GitHub 공식 페이지 Changing a remote's URL 포스팅](https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url) 에서 더 확인할 수 있다.
 
 ---
 참고문서
