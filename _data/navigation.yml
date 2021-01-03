@@ -17,6 +17,8 @@ book:
     children:
       - title: "MongoDB in Action"
         url: /book/mongo/
+      - title: "Effective Java"
+        url: /book/effective-java/
 
 algorithm:
   - title: "basic"
