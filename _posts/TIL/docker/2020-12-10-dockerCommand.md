@@ -40,7 +40,7 @@ rnbwd/sinopia            latest              14038a0d48a2        3 years ago    
 
 ## run (컨테이너 생성과 동시에 컨테이너로 접속)
 
-`docker run <옵션><이미지이름><실행할파일>` : 단숞 image 안의 파일을 실행하 목적으로 생성된것이기 때문에 **메인으로 실행되는 파일이 종료되면 컨테이너도 같이 종료된다. 따라서, 계속해서 컨테이너를 유지하고 싶다면 -d옵션을 이용해야 한다**
+`docker run <옵션><이미지이름><실행할파일>` : 단순 image 안의 파일을 실행하 목적으로 생성된것이기 때문에 **메인으로 실행되는 파일이 종료되면 컨테이너도 같이 종료된다. 따라서, 계속해서 컨테이너를 유지하고 싶다면 `-d` 옵션을 이용해야 한다**
 
 - 옵션
   - i (interactive) : 사용자가 입출력을 할 수 있는 상태로 한다   
@@ -53,7 +53,8 @@ rnbwd/sinopia            latest              14038a0d48a2        3 years ago    
     docker run --name mongodb-server -v /etc/mongod.conf:/etc/config/mongod.conf -d mongo --config /etc/config/mongod.conf
     ```
 
-    이렇게하면 안된다.. `--config` 를 지우면 띄어 지는데,, 왜 안되는 지 모르겠다.
+    [몽고 서버 띄울 때..] 이렇게하면 안된다.. `--config` 를 지우면 띄어 지는데,, 왜 안되는 지 모르겠다.
+    {: .notice--warning}
 
 ## exec
 
@@ -64,10 +65,10 @@ docker exec -it mongodb_server bash
 
 ## ps (컨테이너 확인(실행중인 image 확인))
 
-- docker ps
+- `docker ps`
   - 실행중인 컨테이너의 목록을 확인한다
 
-- docker ps -a
+- `docker ps -a`
   - 이전에 종료되었던 컨테이너들을 포함한 컨테이너의 목록을 확인한다
 
 ## logs (컨테이너 로그를 확인한다.)
@@ -79,8 +80,8 @@ Initializing database
 
 ---
 [참고자료]
-https://captcha.tistory.com/49
-https://hub.docker.com/_/mongo
-https://elfinlas.github.io/2019/02/11/docker-on-mongo/
-https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html - 컨테이너실행
-https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html - 도커기본정보
+
+- [https://captcha.tistory.com/49](https://captcha.tistory.com/49)
+- [https://elfinlas.github.io/2019/02/11/docker-on-mongo/](https://elfinlas.github.io/2019/02/11/docker-on-mongo/)
+- [컨테이너실행](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)
+- [도커기본정보](https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html)

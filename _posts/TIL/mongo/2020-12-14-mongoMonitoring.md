@@ -6,21 +6,16 @@ tags: [til, mongo]
 categories: [til/mongo]
 ---
 
-Mongo DB를 모니터링하기 위해 여러 방법이 있다.
+회사에서 Mongo DB를 모니터링하기 위해서 여러 Tool을 찾아보았고 그 정보를 정리했습니다.
+{: .notice--info}
 
-## [Free Cloud monitoring](https://docs.mongodb.com/manual/administration/free-monitoring/)
+## 1. mongod 내부 메서드 실행
 
-By default, you can enable/disable free monitoring during runtime using `db.enableFreeMonitoring()` and `db.disableFreeMonitoring()`.
+mongod에서 `db.enableFreeMonitoring()`를 실행해서 주요정보를 얻어올 수 있다.
 
-> 주의
-Mongo 4.0 이상에서만 가능하다.
+더 자세한 정보는 [Free Cloud monitoring](https://docs.mongodb.com/manual/administration/free-monitoring/) 에서 확인 가능하다.
 
-
-Monitored Data
-  - Operation Execution Times
-  - Memory Usage
-  - CPU Usage
-  - Operation Counts
+> By default, you can enable/disable free monitoring during runtime using `db.enableFreeMonitoring()` and `db.disableFreeMonitoring()`.
 
 mogod에서 아래 커맨드를 입력하면 모니터링 URL이 리턴된다.
 ``` console
@@ -28,30 +23,21 @@ db.getFreeMonitoringStatus() // 이게 OK이면 모니터링 되고 있다는 �
 db.enableFreeMonitoring() // 실행하면 unique url 이 나온다.
 ```
 
-실시간이 아닌, 24시간 이내 데이터가 추출되고 24시간 후에는 해당 데이터가 expire 된다.
+Mongo 4.0 이상에서만 가능하다.
+{: .notice--warning}
 
-## Mongo DB에서 기본 제공하는 CLI 명령어
+return된 url을 브라우저에서 실행해보면 간단한 모니터링 대쉬보드가 나온다. (사진없음 :cry:)
 
-1. [mongotop](https://docs.mongodb.com/database-tools/mongotop/#bin.mongotop)을 이용한 각 collection별 read write 속도 모니터링
-
-```console
-./mongotop --host localhost --port 27017 -u user -p 'password' --authenticationDatabase admin
-```
-
-2. [mongostat](https://docs.mongodb.com/database-tools/mongostat/#bin.mongostat)을 이용한 query 실행 보니터링
-
-```console
-./mongostat --host localhost --port 27017 -u user -p 'password' --authenticationDatabase admin
-```
-
-[참고문서]
-https://docs.ncloud.com/ko/database/database-10-6.html
+주의할 것은 실시간이 아닌, 24시간 이내 데이터가 추출되고 24시간 후에는 해당 데이터가 expire 된다.
 
 
-## mongod Command
+아래와 같은 정보를 얻을 수 있다.
+  - Operation Execution Times
+  - Memory Usage
+  - CPU Usage
+  - Operation Counts
 
-mongod command를 이용한 데이터는 위의 데이터를 가공한 데이터다.
-
+대쉬보드로 보는 것이 아니라 서버에서 직접 명령어를 통해 서버 정보, db 상태 등을 직접 볼 수 있다.
 ``` console
 > db.currentOp
 > db.serverStatus()
@@ -61,16 +47,53 @@ mongod command를 이용한 데이터는 위의 데이터를 가공한 데이터
 [참고문서]
 https://docs.mongodb.com/manual/administration/monitoring/
 
----
-## Mongodb exporter로 데이터 metrics 추출
 
-위에서 언급한 data를 모드 metrics로 추출한다. `db.serverStatus()` 로 얻을 수있는 정보는 모두 포함된다.
+## 2. Mongo DB에서 기본 제공하는 CLI 명령어
+
+- [mongotop](https://docs.mongodb.com/database-tools/mongotop/#bin.mongotop)을 이용한 각 collection별 read write 속도 모니터링
+
+```console
+./mongotop --host localhost --port 27017 -u user -p 'password' --authenticationDatabase admin
+```
+
+- [mongostat](https://docs.mongodb.com/database-tools/mongostat/#bin.mongostat)을 이용한 query 실행 모니터링
+
+```console
+./mongostat --host localhost --port 27017 -u user -p 'password' --authenticationDatabase admin
+```
+
+[참고문서]
+https://docs.ncloud.com/ko/database/database-10-6.html
+
+
+## 3. Mongodb exporter로 데이터 metrics 추출
+
+위에서 언급한 data를 모두 metrics로 추출한다. `db.serverStatus()` 로 얻을 수있는 정보는 모두 포함된다.
 
 > Much of the output of serverStatus is also displayed dynamically by mongostat. See the mongostat command for more information.
 
-#### [David Cuadrado가 만든 exporter](https://github.com/dcu/mongodb_exporter) 의 정보
+Mongodb exporter 는 두 가지가 있다.
+- David Cuadrado가 만든 exporter [David Cuadrado가 만든 exporter](https://github.com/dcu/mongodb_exporter)
+- Percona가 만든 exporter
 
-##### Collect below metrics
+## 3-1. David Cuadrado가 만든 exporter
+
+#### exporter 설치방법
+[해당 링크](https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/0)에서 자세히 설명되어 있다.
+
+1. docker로 exporter image import
+2. docker image 실행
+``` console
+docker run --name mongodb_exporter --rm -d -p 9001:9001 mongodb_exporter --mongodb.uri=mongodb://mongodb_exporter:mongodb_exporter@10.203.7.214:27017
+```
+3. metric 수집되는지 확인
+``` console
+curl localhost:9001/metrics
+```
+4. prometheus 에 해당 metrics url 등록
+5. 그라파나 dashboad import
+
+**Collect below metrics**
 - MongoDB Server Status metrics (cursors, operations, indexes, storage, etc)
 - MongoDB Replica Set metrics (members, ping, replication lag, etc)
 - MongoDB Replication Oplog metrics (size, length in time, etc)
@@ -79,7 +102,7 @@ https://docs.mongodb.com/manual/administration/monitoring/
 - MongoDB WiredTiger storage-engine metrics (cache, blockmanger, tickets, etc)
 - MongoDB Top Metrics per collection (writeLock, readLock, query, etc*)
 
-##### Available groups of data
+**Available groups of data**
 
 Name     | Description
 ---------|------------
@@ -102,7 +125,6 @@ top | The top group provides an overview of database operations by type for each
 ---
 
 #### `db.serverStatus`로 얻을 수 있는 정보
-
   - 주요 항목
     - `uptime` : The number of seconds that the current MongoDB process has been active
     - `asserts` : MongoDB 가 started 된 후부터 체크하는 항목
@@ -122,25 +144,16 @@ top | The top group provides an overview of database operations by type for each
   - `members` : replica set으로 구성된 여러 서버들에 대한 정보
   - 자세한 내용은 여기서.. [https://docs.mongodb.com/manual/reference/command/replSetGetStatus/](https://docs.mongodb.com/manual/reference/command/replSetGetStatus/)
 
-#### exporter 설치방법
-아래 포스트해서 자세히 설명되어 있다.
-https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/
 
-- docker로 exporter image import
-- docker image 실행
-``` console
-docker run --name mongodb_exporter --rm -d -p 9001:9001 mongodb_exporter --mongodb.uri=mongodb://mongodb_exporter:mongodb_exporter@10.203.7.214:27017
-```
-- metric 수집되는지 확인
-``` console
-curl localhost:9001/metrics
-```
-- prometheus 에 해당 metrics url 등록
-- 그라파나 dashboad import
+## 3-2. Percona exporter
+
+위의 exporter에서 sharding 모니터링까지 추가된 exporter 이다.
+[Percona Exporter](https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/)
+
+그라파나 대쉬보드는 3-1. exporter에 주요한 정보가 잘 보여서 해당 exporter를 채택 했다.
 
 ---
-- Percona exporter 사용법
-https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/
+[참고문서]
 - dcu exporter 사용법
 https://github.com/dcu/mongodb_exporter
 - dcu exporter 그라파나
