@@ -78,20 +78,30 @@ Mongodb exporter 는 두 가지가 있다.
 
 ## 3-1. David Cuadrado가 만든 exporter
 
+dcu 보다 percona 버전으로 사용하자. dcu는 더이상 업데이트 되지 않아서, 높은 버전의 몽고일 경우 percona exporter로 깔아야지 정상작동한다.
+{: .notice--danger}
+
 #### exporter 설치방법
 [해당 링크](https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/0)에서 자세히 설명되어 있다.
 
-1. docker로 exporter image import
-2. docker image 실행
+1. 둘 중 하나로, mongodb-exporter 다운로드
+- go get -u github.com/percona/mongodb_exporter
+- $ wget https://github.com/percona/mongodb_exporter/releases/download/v0.7.1/mongodb_exporter-0.7.1.linux-amd64.tar.gz
+
+2. 다운받은 path 로 가서
+make build
+make docker
+
+3. docker image 실행
 ``` console
 docker run --name mongodb_exporter --rm -d -p 9001:9001 mongodb_exporter --mongodb.uri=mongodb://mongodb_exporter:mongodb_exporter@10.203.7.214:27017
 ```
-3. metric 수집되는지 확인
+4. metric 수집되는지 확인
 ``` console
 curl localhost:9001/metrics
 ```
-4. prometheus 에 해당 metrics url 등록
-5. 그라파나 dashboad import
+5. prometheus 에 해당 metrics url 등록
+6. 그라파나 dashboad import
 
 **Collect below metrics**
 - MongoDB Server Status metrics (cursors, operations, indexes, storage, etc)
