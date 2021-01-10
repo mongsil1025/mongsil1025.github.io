@@ -14,9 +14,10 @@ categories: [til/mongo]
 
 `MappingMongoConverter` 는 자바의 여러 객체들을 Mongo의 Document로 전환하기 위한 Converter이다.
 
-> MongoConverter that uses a MappingContext to do sophisticated mapping of domain objects to Document. [MappingMongoConverter](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/convert/MappingMongoConverter.html)
+> MongoConverter that uses a MappingContext to do sophisticated mapping of domain objects to Document.
+> by [MappingMongoConverter](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/convert/MappingMongoConverter.html)
 
-`write` 메소드
+## MappingMongoConverter `write` 메소드
 ``` java
 private void writeProperties(Bson bson, MongoPersistentEntity<?> entity, PersistentPropertyAccessor<?> accessor, DocumentAccessor dbObjectAccessor, @Nullable MongoPersistentProperty idProperty) {
     Iterator var6 = entity.iterator();
@@ -44,7 +45,8 @@ private void writeProperties(Bson bson, MongoPersistentEntity<?> entity, Persist
 
 `Object`를 Bson 객체로 만드는 메소드이다. 값이 null이 아닌경우 에만 `this.writePropertyInternal` 를 통해 Object 객체 안에 있는 값들을 bson으로 만들어준다.
 
-즉, Dto 안에 값이 null인 필드는 bson으로 전환되지 않는다는 뜻이다.
+Dto 안에 값이 null인 필드는 bson으로 전환되지 않는다
+{: .notice--danger}
 
 참고문서
 - https://stackoverflow.com/questions/30071464/spring-data-mongo-update-null-value-in-document-with-mappingmongoconverter
@@ -82,4 +84,4 @@ public class MongoConfig {
 }
 ```
 
-이와 같이, 스프링 몽고에서 기본적으로 띄우는 `Conveter` 나 설정 같은 것은, 커스터마이징을 할 수 있으며, 그 방법은 같은 이름으로 된 Bean을 올려서 주입하면 된다.
+이와 같이, 스프링 몽고에서 기본적으로 띄우는 `Conveter` 나 설정 같은 것은, 커스터마이징을 할 수 있으며, **그 방법은 같은 이름으로 된 Bean을 올려서 주입하면 된다.**
