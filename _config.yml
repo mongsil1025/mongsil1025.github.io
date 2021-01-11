@@ -240,3 +240,10 @@ defaults:
       share: # true
       related: #true
       classes: wide
+      show_date: true
+  # _effective-java
+  - scope:
+      path: "_posts/Book/effective-java/"
+    values:
+      sidebar:
+        nav: "effective-java"
