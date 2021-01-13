@@ -1,5 +1,5 @@
 ---
-title:  "[Mongo] 몽고 db 모니터링을 위한 exporter 설치"
+title:  "[Mongo] 몽고 db 모니터링 방법 (서버 모니터링 부터 그라파나 연동까지)"
 date: 2021-01-05
 excerpt: ""
 tags: [til, mongo]
@@ -11,24 +11,25 @@ categories: [til/mongo]
 
 ## 1. mongod 내부 메서드 실행
 
-mongod에서 `db.enableFreeMonitoring()`를 실행해서 주요정보를 얻어올 수 있다.
+- `mongo.exe`를 실행
+- `db.enableFreeMonitoring()`를 실행
+- mongodb 모니터링 URL 확인
 
-더 자세한 정보는 [Free Cloud monitoring](https://docs.mongodb.com/manual/administration/free-monitoring/) 에서 확인 가능하다.
+![화면 캡처 2021-01-13 225544](https://i.imgur.com/La2MyYU.png)
+
+FreeMonitoring 관련해서는 [Free Cloud monitoring](https://docs.mongodb.com/manual/administration/free-monitoring/) 에서 확인 가능하다.
 
 > By default, you can enable/disable free monitoring during runtime using `db.enableFreeMonitoring()` and `db.disableFreeMonitoring()`.
 
-mogod에서 아래 커맨드를 입력하면 모니터링 URL이 리턴된다.
-``` console
-db.getFreeMonitoringStatus() // 이게 OK이면 모니터링 되고 있다는 뜻
-db.enableFreeMonitoring() // 실행하면 unique url 이 나온다.
-```
 
-Mongo 4.0 이상에서만 가능하다.
+**Warn:** Mongo 4.0 이상에서만 가능하다.
 {: .notice--warning}
 
-return된 url을 브라우저에서 실행해보면 간단한 모니터링 대쉬보드가 나온다. (사진없음 :cry:)
+return된 url을 브라우저에서 실행해보면 간단한 모니터링 대쉬보드가 나온다.
 
-주의할 것은 실시간이 아닌, 24시간 이내 데이터가 추출되고 24시간 후에는 해당 데이터가 expire 된다.
+![FireShot Capture 006 - MongoDB Free Monitoring - cloud.mongodb.com](https://i.imgur.com/wpMgDQA.png)
+
+주의할 것은 **실시간이 아닌, 24시간 이내 데이터가 추출되고 24시간 후에는 해당 데이터가 expire 된다**.
 
 
 아래와 같은 정보를 얻을 수 있다.
@@ -37,7 +38,7 @@ return된 url을 브라우저에서 실행해보면 간단한 모니터링 대�
   - CPU Usage
   - Operation Counts
 
-대쉬보드로 보는 것이 아니라 서버에서 직접 명령어를 통해 서버 정보, db 상태 등을 직접 볼 수 있다.
+위처럼 대쉬보드말고 서버에서 아래 명령어를 통해 서버 정보, db 상태 등을 직접 볼 수 있다.
 ``` console
 > db.currentOp
 > db.serverStatus()
@@ -66,7 +67,7 @@ https://docs.mongodb.com/manual/administration/monitoring/
 https://docs.ncloud.com/ko/database/database-10-6.html
 
 
-## 3. Mongodb exporter로 데이터 metrics 추출
+## 3. Mongodb exporter로 데이터 metrics 추출 (프로메테우스에 등록할 metrics)
 
 위에서 언급한 data를 모두 metrics로 추출한다. `db.serverStatus()` 로 얻을 수있는 정보는 모두 포함된다.
 
@@ -76,7 +77,7 @@ Mongodb exporter 는 두 가지가 있다.
 - David Cuadrado가 만든 exporter [David Cuadrado가 만든 exporter](https://github.com/dcu/mongodb_exporter)
 - Percona가 만든 exporter
 
-## 3-1. David Cuadrado가 만든 exporter
+### 3-1. David Cuadrado가 만든 exporter
 
 dcu 보다 percona 버전으로 사용하자. dcu는 더이상 업데이트 되지 않아서, 높은 버전의 몽고일 경우 percona exporter로 깔아야지 정상작동한다.
 {: .notice--danger}
@@ -155,7 +156,7 @@ top | The top group provides an overview of database operations by type for each
   - 자세한 내용은 여기서.. [https://docs.mongodb.com/manual/reference/command/replSetGetStatus/](https://docs.mongodb.com/manual/reference/command/replSetGetStatus/)
 
 
-## 3-2. Percona exporter
+### 3-2. Percona exporter
 
 위의 exporter에서 sharding 모니터링까지 추가된 exporter 이다.
 [Percona Exporter](https://devconnected.com/mongodb-monitoring-with-grafana-prometheus/)
