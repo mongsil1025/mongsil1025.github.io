@@ -50,6 +50,8 @@ til:
     url: /til/language/
   - title: "git"
     url: /til/git/
+  - title: "server"
+    url: /til/server/
 
 language:
   - title: "python"
