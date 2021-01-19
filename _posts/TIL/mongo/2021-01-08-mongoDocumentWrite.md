@@ -45,8 +45,8 @@ update = Update.fromDocument(doc); // (2) document를 update 한다.
   - java Reflection 사용해서 Field의 값을 get한 뒤, **값이 null 이 아니면 bson에 추가**
 
 2. `Update.fromDocument(doc)`: document를 update하는 update쿼리를 반환
-  - <field>:<value> 쌍을 update문의 파라미터로 넘긴다.
-	- ★ <field>:<value>를 넘겼으니, document 가 **교체된다**. 만약 특정 필드만 update하고자 할때는 이 메소드를 쓰면 안된다.
+  - `<field>:<value>` 쌍을 update문의 파라미터로 넘긴다.
+	- ★ `<field>:<value>`를 넘겼으니, document 가 **교체된다**. 만약 특정 필드만 update하고자 할때는 이 메소드를 쓰면 안된다.
 
 ``` java
 mongoTemplate.upsert(query, update, "item_base");
