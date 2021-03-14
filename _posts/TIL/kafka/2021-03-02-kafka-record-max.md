@@ -7,12 +7,15 @@ classes: wide
 categories: [til/kafka]
 ---
 
+## 오류전문
+
 `org.apache.kafka.common.errors.RecordTooLargeException: The message is 1382477 bytes when serialized which is larger than 1048576`
 
-오류전문
-``` console
+
+<div>
 2021-02-25 16:37:32.004 ERROR 1 --- [tainer#10-0-C-1] c.s.a.c.c.c.BasicConsumerErrorHandler    : [Consumer Error] ----- Listener method 'public void com.ssg.api.dataSync.consumer.ItemOptnApiDataSyncConsumer.syncTableItemListener(java.lang.String) throws java.lang.Exception' threw exception; nested exception is org.springframework.kafka.KafkaException: Send failed; nested exception is org.apache.kafka.common.errors.RecordTooLargeException: The message is 1382477 bytes when serialized which is larger than 1048576, which is the value of the max.request.size configuration.; nested exception is org.springframework.kafka.KafkaException: Send failed; nested exception is org.apache.kafka.common.errors.RecordTooLargeException: The message is 1382477 bytes when serialized which is larger than 1048576, which is the value of the max.request.size configuration.
-```
+</div>
+
 
 kafka로 보내는 메시지의 크기가 default 크기인 1048576 byte 보다 크면 발생하는 오류이다.
 
