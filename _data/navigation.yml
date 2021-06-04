@@ -16,6 +16,8 @@ book:
     url: /book/effective-java/
   - title: "MongoDB in Action"
     url: /book/mongodb-in-action/
+  - title: "Modern Java in Action"
+    url: /book/modern-java-in-action/
 
 # effective-java:
 #   - title: "2장 객체 생성과 파괴"

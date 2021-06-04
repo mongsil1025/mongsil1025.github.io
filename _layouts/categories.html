@@ -11,12 +11,12 @@ layout: archive
   {% endif %}
 {% endfor %}
 
+<!-- List Headers -->
 <ul class="taxonomy__index">
   {% for i in (1..categories_max) reversed %}
     {% for category in site.categories %}
       {% if category[0] contains page.include %}
         {% if category[1].size == i %}
-        {{ category[0] }}
           <li>
             <a href="#{{ category[0] | slugify }}">
               <strong>{{ category[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
@@ -28,21 +28,41 @@ layout: archive
   {% endfor %}
 </ul>
 
+<!-- Lists -->
 {% assign entries_layout = page.entries_layout | default: 'list' %}
 {% for i in (1..categories_max) reversed %}
   {% for category in site.categories %}
     {% if category[0] contains page.include %}
       {% if category[1].size == i %}
         <section id="{{ category[0] | slugify | downcase }}" class="taxonomy__section">
-          <h2 class="archive__subtitle">{{ category[0] }}</h2>
-          <div class="entries-{{ entries_layout }}">
-            {% for post in category.last %}
-              {% include archive-single.html type=entries_layout %}
-            {% endfor %}
+          <div>
+            <h2 class="archive__subtitle">{{ category[0] }}</h2>
+            <table>
+              <tr>
+                <td>
+                  {% for img in site.books %}
+                    {% if img.id == category[0]%}
+                      <figure style="width: 200px; height: 250px;">
+                          <img src="{{ img.image_path }}">
+                      </figure>
+                      {% assign more_url = img.post_url %}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+                <td style="padding: 45px;">
+                  <div class="entries-{{ entries_layout }}">
+                    {% for post in category.last limit:5 %}
+                      {% include archive-single.html type=entries_layout %}
+                    {% endfor %}
+                    <p><a href="{{ more_url }}" class="btn {{ f.btn_class }}">{{ f.btn_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </div>
-          <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
         </section>
       {% endif %}
     {% endif %}
   {% endfor %}
 {% endfor %}
+<a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>

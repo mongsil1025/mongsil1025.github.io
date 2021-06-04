@@ -247,3 +247,15 @@ defaults:
     values:
       sidebar:
         nav: "effective-java"
+
+# images
+books:
+  - id : "book/effective-java"
+    image_path : "/assets/img/books/effective_java.jpg"
+    post_url : "/book/effective-java"
+  - id : "book/mongoDB-in-action"
+    image_path : "/assets/img/books/mongodb-in-action-title.jpg"
+    post_url : "/book/mongodb-in-action/"
+  - id : "book/modern-java-in-action"
+    image_path : "/assets/img/books/modern-java-in-action.jpg"
+    post_url : "/book/modern-java-in-action/"
