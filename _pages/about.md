@@ -1,7 +1,7 @@
 ---
 layout: single
 comments: false
-permalink: /about
+permalink: /about/
 title: "안녕하세요 :)"
 classes: wide
 ---
