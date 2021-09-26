@@ -3,7 +3,9 @@ title:  "[MongoDB in Action] MongoDB 셸"
 date: 2021-04-29
 excerpt: ""
 tags: [book, mongoDB-in-action]
-classes: wide
+classes: narrow
+toc: true
+toc_sticky: true
 categories: [book/mongoDB-in-action]
 ---
 
