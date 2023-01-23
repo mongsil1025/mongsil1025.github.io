@@ -10,6 +10,8 @@ main:
     url: /algorithm/
   - title: "Book"
     url: /book/
+  - title: "Blog"
+    url: /blog/
   - title: "Tags"
     url: /tags/
 
@@ -41,7 +43,7 @@ algorithm:
     url: /algorithm/basic/
   - title: "codility"
     url: /algorithm/codility/
-  - title : "backjun"
+  - title: "backjun"
     url: /algorithm/backjun/
   - title: "leetcode"
     url: /algorithm/leetcode/
