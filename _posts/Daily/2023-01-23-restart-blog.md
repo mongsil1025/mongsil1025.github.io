@@ -13,7 +13,7 @@ categories: [blog/daily]
 그래서 손으로 썼던 것을 다시 노션으로 옮겼고, 나만의 대시보드를 만들어서 관리하기 시작했다. 결론적으로는 상당히 만족한다. 이 노션 대시보드를 조금 더 다듬어서 2023년 말에는 템플릿으로 만드는 날이 왔으면 좋겠다.
 
 <figure>
-	<img src="../../assets/daily/스크린샷 2023-01-23 오후 5.26.06.png">
+	<img src="/assets/daily/스크린샷 2023-01-23 오후 5.26.06.png">
 	<figcaption>Maylin's Dashboard preview</figcaption>
 </figure>
 
@@ -22,7 +22,7 @@ categories: [blog/daily]
 먼저, 구글 AdSense 를 검토요청 해놓았다. 1년 가까이 방치해둔 블로그가 아직도 트래픽이 있는 것을 보고 다시 시작할 마음이 생겼기 때문이다. 감사하게도 생각보다 많은 유저들이 내 보잘 것 없는(?) 글을 읽어주셨다 :)
 
 <figure>
-	<img src="../../assets/daily/2023-01-23-ga.png">
+	<img src="/assets/daily/2023-01-23-ga.png">
 	<figcaption>지난 7일 동안 Google Anaylitics 캡쳐</figcaption>
 </figure>
 
