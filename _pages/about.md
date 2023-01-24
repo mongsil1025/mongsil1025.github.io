@@ -17,7 +17,7 @@ classes: wide
             <h2>SUNMIN JEONG</h2> <!--edit name-->
             <h3>정선민</h3> <!--edit designation-->
               Not to stop <br>
-              A junior programmer and media-lover<p></p>
+              A web developer and media-lover<p></p>
               <div class="navigation-wrapper">
                   <ul class="navigation">
                     <!-- LinkedIn -->
@@ -113,29 +113,33 @@ classes: wide
             </div>
         </div>
       </div>
+
   </div>
 </div>
 
-
-## Education
+## Education 📚
 
 ### Multimedia Engineering in Dongguk Univ. (2013.03 ~ 2017.02)
+
 컴퓨터 공학에서 배우는 CS 지식을 기본으로, Computer Vision, 3D Programming, AR/VR 과 같이 멀티미디어공학의 이론과 기술을 배웠습니다.
 
-
-## Communication
-
-학창시절을 중국 상하이에서 보내 중국어도 할 수 있습니다. :smile:
+## Communication 💬
 
 - Korean
 - English
 - Chineese
 
-## Careers
+## Careers 👩🏻‍💻
 
-### SSG.COM Back-Server Web Developer
+### SSG.COM Back-Server Web Developer (2017 ~ 2021)
+
 SSG.COM에서 e커머스의 기반이 되는 상품 Admin 서비스 개발자로서 Spring 프레임워크를 기반으로 MVC 모델을 통한 웹개발을 하고 있습니다. 현재는 Legacy를 MSA 플랫폼으로 전환하는데 많은 노력을 하고 있습니다.
+
+### Sendbird BackeEnd Developer (2022 ~ )
+
+Moving on to python world, I have joined Sendbird as backend server developer. [Sendbird](https://sendbird.com/) is the conversations platform for mobile apps. I'm contributing to build dashboard that customers in sendbird use. Furthermore, billing system is very important to B2B system. I maintain the billing system to operate without any problems.
+In the development stack perspective, I have made my first attemp to use AWS service, Django Platform.
 
 ## Skills
 
-<a frameborder="0" data-theme="light" data-layers="1,2,3,4" data-stack-embed="true" href="https://embed.stackshare.io/stacks/embed/c9ed4a3cbd5d288191a92edcf5803a"/><script async src="https://cdn1.stackshare.io/javascripts/client-code.js" charset="utf-8"></script>
+<a data-theme="light" data-layers="1,2,3,4" data-stack-embed="true" href="https://embed.stackshare.io/stacks/embed/c9ed4a3cbd5d288191a92edcf5803a"></a><script async src="https://cdn1.stackshare.io/javascripts/client-code.js" charset="utf-8"></script>
