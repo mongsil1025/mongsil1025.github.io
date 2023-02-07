@@ -54,10 +54,6 @@ include breadcrumbs.html %} {% endunless %} {% endif %}
             {% include toc.html sanitize=true html=content h_min=1 h_max=6
             class="toc__menu" skip_no_ids=true %}
           </nav>
-          <!-- right-sidebar ads -->
-          <nav class="toc-custom">
-            {% if page.toc_ads %} {% include google-ad-sense.html %} {% endif %}
-          </nav>
         </aside>
         {% endif %} {{ content }} {% if page.link %}
         <div>
