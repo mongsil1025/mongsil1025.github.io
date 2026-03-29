@@ -1,5 +1,5 @@
 ---
-title:  "Django async worker 에서 MySQL Server has gone away 에러 해결"
+title: "Django async worker 에서 MySQL Server has gone away 에러 해결"
 date: 2026-02-09
 excerpt: "sync_to_async의 thread_sensitive 옵션이 Django DB connection 관리에 미치는 영향"
 tags: [til, django, mysql, async]
